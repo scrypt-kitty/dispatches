@@ -1,0 +1,112 @@
+/* =========================================================================
+   scrypt-kitty // dispatches — blog styles.
+   Design tokens shared with the static landing (my_website/site/styles.css).
+   Pure CSS, no third-party JS, no external fonts/CDNs.
+   ========================================================================= */
+
+:root {
+  --bg:        #0a0e12;
+  --bg-alt:    #0e141b;
+  --surface:   #12181f;
+  --surface-2: #171f28;
+  --border:    #223040;
+  --text:      #e6edf3;
+  --muted:     #93a1b0;
+  --muted-2:   #6b7a8a;
+  --accent:    #5eead4;  /* teal */
+  --accent-2:  #f471b5;  /* pink */
+  --accent-ink:#04211d;
+
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  --maxw: 780px;
+  --radius: 12px;
+  --pad: clamp(1rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#f6f8fa; --bg-alt:#eef2f6; --surface:#fff; --surface-2:#f2f5f8;
+    --border:#d6dee6; --text:#131a21; --muted:#4b5763; --muted-2:#6b7a8a;
+    --accent:#0f9c8a; --accent-2:#c02a7a; --accent-ink:#fff;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; font-family: var(--sans); background: var(--bg); color: var(--text);
+  line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
+.dim { color: var(--muted-2); font-weight: 400; }
+.muted { color: var(--muted); }
+
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .6rem 1rem; }
+.skip-link:focus { left: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+/* header */
+.site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; max-width: 980px; margin-inline: auto; padding-inline: var(--pad); }
+.brand { display: inline-flex; align-items: center; gap: .55rem; color: var(--text); font-weight: 700; }
+.brand:hover { text-decoration: none; }
+.brand-mark { font-family: var(--mono); color: var(--accent-2); letter-spacing: -1px; }
+.brand-name { font-family: var(--mono); letter-spacing: -.3px; font-size: .98rem; }
+.nav-links { display: flex; gap: 1.2rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: var(--muted); font-size: .92rem; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+
+/* hero-lite (index) */
+.hero-lite {
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(50rem 24rem at 80% -20%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%), var(--bg);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+.eyebrow { font-family: var(--mono); color: var(--accent); font-size: .82rem; margin: 0 0 .6rem; }
+.hero-lite h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); letter-spacing: -1px; margin: 0 0 .8rem; font-weight: 800; }
+.lede { color: var(--muted); font-size: 1.08rem; }
+
+.section { padding-block: clamp(2rem, 5vw, 3.5rem); }
+
+/* category chips */
+.chip-row { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0 0 2rem; }
+.chip { font-family: var(--mono); font-size: .74rem; color: var(--accent); border: 1px solid var(--border); border-radius: 999px; padding: .25rem .7rem; }
+
+/* post list */
+.post-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+.post-item { border-bottom: 1px solid var(--border); padding-bottom: 1.6rem; }
+.post-item:last-child { border-bottom: 0; }
+.post-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -.3px; }
+.post-meta { font-family: var(--mono); font-size: .8rem; color: var(--muted-2); margin: .35rem 0 .5rem; }
+.post-meta .cat { color: var(--accent-2); }
+.post-intro { color: var(--muted); margin: 0; }
+
+/* article */
+.prose h1 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); letter-spacing: -.6px; margin: .3rem 0 1rem; font-weight: 800; }
+.prose h2 { font-size: 1.4rem; margin: 2rem 0 .6rem; letter-spacing: -.3px; }
+.post-body { font-size: 1.05rem; }
+.post-body p { margin: 0 0 1.1rem; }
+.post-body a { text-decoration: underline; }
+.post-image { border-radius: var(--radius); border: 1px solid var(--border); margin: 1.4rem 0; }
+.post-body blockquote, .prose blockquote {
+  margin: 1.4rem 0; padding: .8rem 1.3rem; border-left: 4px solid var(--accent);
+  background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0; color: var(--text); font-style: italic;
+}
+figure.code { margin: 1.4rem 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+figure.code .code-lang { font-family: var(--mono); font-size: .72rem; color: var(--muted-2); padding: .5rem .9rem; border-bottom: 1px solid var(--border); background: var(--surface-2); text-transform: uppercase; letter-spacing: .5px; }
+figure.code pre { margin: 0; padding: 1rem 1.1rem; overflow-x: auto; font-family: var(--mono); font-size: .86rem; line-height: 1.6; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 1.4rem 0 0; margin: 1.4rem 0 0; border-top: 1px solid var(--border); }
+.tag { font-family: var(--mono); font-size: .74rem; color: var(--muted); }
+.back { margin-top: 2rem; }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--border); background: var(--bg-alt); padding-block: 2rem; margin-top: 2rem; }
+.site-footer p { margin: 0 0 .4rem; color: var(--muted); font-size: .88rem; }
+.footer-pledge { color: var(--muted-2) !important; font-size: .82rem !important; }
